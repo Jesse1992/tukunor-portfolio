@@ -463,9 +463,6 @@ function ExperienceSection({ lang }: { lang: Lang }) {
 
           <div className={styles.educationItem}>
             <div className={styles.roleBlock}>
-              <div className={styles.experienceLabel}>
-                {lang === "zh" ? "教育背景" : "Education"}
-              </div>
               <div className={styles.companyRole}>
                 {lang === "zh"
                   ? "南京师范大学（211）"
