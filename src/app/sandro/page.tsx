@@ -161,11 +161,7 @@ function NavOverlay({
 
 function CornerTriggers({ onOpen }: { onOpen: () => void }) {
   return (
-    <>
-      <div className={`${styles.cornerIndex} ${styles.bl}`} onClick={onOpen}>
-        0
-      </div>
-    </>
+    null
   );
 }
 
