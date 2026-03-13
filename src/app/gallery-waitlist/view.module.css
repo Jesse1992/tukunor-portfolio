@@ -1,0 +1,211 @@
+:root {
+  --bg-color: #f0f2f4;
+  --text-main: #1a1a1a;
+  --text-sub: #888888;
+  --font-stack: "Courier New", Courier, monospace;
+}
+
+.root {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-stack);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 100;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.brand {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.meta {
+  text-align: right;
+  font-size: 10px;
+  color: var(--text-sub);
+  line-height: 1.4;
+}
+
+.galleryViewport {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 40vh;
+  perspective: 1200px;
+  overflow: visible;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+.galleryViewport:active {
+  cursor: grabbing;
+}
+
+.stripContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 260px;
+  margin-left: -100px;
+  margin-top: -130px;
+  background: #e0e0e0;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.4s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%) contrast(95%);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  z-index: 1000 !important;
+}
+
+.waitlistContainer {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  z-index: 200;
+  opacity: 0;
+  animation: fadeIn 2s ease 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.waitlistLabel {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 12px;
+  color: var(--text-sub);
+  display: block;
+}
+
+.inputGroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.inputGroup:focus-within {
+  border-color: #000;
+}
+
+.inputGroup input[type="email"] {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: var(--font-stack);
+  font-size: 13px;
+  color: var(--text-main);
+  padding-right: 40px;
+}
+
+.inputGroup input[type="email"]::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.submitBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-stack);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-main);
+  position: absolute;
+  right: 0;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.submitBtn:hover {
+  opacity: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+
+.loaderText {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+

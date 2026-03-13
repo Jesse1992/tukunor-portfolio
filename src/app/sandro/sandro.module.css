@@ -1,0 +1,398 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --secondary-color: #888888;
+  --hairline: #e5e5e5;
+  --accent: #000000;
+  --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
+  --pad: 24px;
+}
+
+.page {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+}
+
+.firstScreen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none;
+}
+
+.cursorDot,
+.cursorOutline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursorDot {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+}
+
+.cursorOutline {
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+  transition: width 0.2s, height 0.2s;
+}
+
+.cornerIndex {
+  position: fixed;
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: 2.5rem;
+  line-height: 1;
+  z-index: 1000;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.cornerIndex:hover {
+  color: var(--secondary-color);
+}
+
+.bl {
+  bottom: var(--pad);
+  left: var(--pad);
+}
+
+.canvasZone {
+  position: relative;
+  height: 65vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.asciiCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.heroText {
+  position: absolute;
+  bottom: 24px;
+  left: var(--pad);
+  pointer-events: auto;
+}
+
+.heroHeadline {
+  font-family: var(--font-libre-baskerville), "Libre Baskerville",
+    "Libre Baskerville Placeholder", serif;
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  mix-blend-mode: normal;
+}
+
+.heroSubline {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.panelZone {
+  height: 35vh;
+  width: 100%;
+  padding: var(--pad);
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 40px;
+  align-content: start;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.experienceSection {
+  padding: var(--pad);
+}
+
+.experienceGrid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.experienceLabel {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+}
+
+.experienceList {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.experienceItemRow {
+  grid-column: 1 / -1;
+  display: contents;
+}
+
+.roleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.companyRole {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.dateRange {
+  font-size: 0.75rem;
+  color: var(--secondary-color);
+}
+
+.detailList {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--text-color);
+}
+
+.detailItem {
+  position: relative;
+  padding-left: 0;
+}
+
+.detailItem::before {
+  content: "•";
+  position: absolute;
+  left: -14px; /* 悬挂：让正文左对齐到列边界 */
+  top: 0;
+  color: var(--secondary-color);
+}
+
+.educationItem {
+  grid-column: 1 / -1;
+  display: contents;
+}
+
+@media (max-width: 768px) {
+  .experienceGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .experienceList {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .experienceItemRow {
+    display: block;
+  }
+
+  .educationItem {
+    display: block;
+  }
+}
+
+.panelCol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bioText {
+  max-width: 400px;
+  color: var(--text-color);
+  transition: opacity 0.15s ease, letter-spacing 0.15s ease, font-family 0.15s ease;
+}
+
+.bioMonoHover {
+  font-family: var(--font-mono);
+  letter-spacing: -0.5px;
+  opacity: 0.7;
+}
+
+.linkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.colophon {
+  margin-top: 16px;
+  color: var(--secondary-color);
+  font-size: 0.75rem;
+}
+
+.contact {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--secondary-color);
+  line-height: 1.6;
+}
+
+.navOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navOverlayActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+}
+
+.navItem {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #ccc;
+  transition: color 0.3s;
+  user-select: none;
+}
+
+.navItem:hover {
+  color: #111;
+}
+
+.scrambleHover {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .page {
+    height: auto;
+    min-height: 100vh;
+    cursor: auto;
+  }
+
+  .page * {
+    cursor: auto;
+  }
+
+  .cursorDot,
+  .cursorOutline {
+    display: none;
+  }
+
+  .canvasZone {
+    height: 50vh;
+  }
+
+  .panelZone {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 35vh;
+    padding: 16px;
+    gap: 24px;
+  }
+
+  .cornerIndex {
+    font-size: 1.5rem;
+  }
+
+  .heroHeadline {
+    font-size: 2rem;
+  }
+
+  .experienceSection {
+    padding: 24px 16px 40px;
+  }
+
+  .experienceGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .experienceList {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .experienceItemRow {
+    display: block;
+  }
+
+  .educationItem {
+    display: block;
+  }
+
+  .roleBlock {
+    margin-bottom: 8px;
+  }
+
+  .companyRole {
+    font-size: 1rem;
+  }
+
+  .dateRange {
+    font-size: 0.8rem;
+  }
+
+  .detailList {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .detailItem {
+    padding-left: 1rem;
+  }
+
+  .detailItem::before {
+    left: 0;
+  }
+}
+
